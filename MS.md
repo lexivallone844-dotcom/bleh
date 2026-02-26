@@ -81,7 +81,7 @@ float ip: 10.50.13.203
 
 (note: with the -O it gives paramenters and to use to it to get to different box, you put forward, but to cancel session you put -O cancel)
 
-#Master Socket Demo
+# Master Socket Demo
 
  Authenticate to jump box, -S create socket file to store sockets, -M uses multiplexing, Keep this open or the conneciton will ide, up to 17 hops deep only using a single connection
 
