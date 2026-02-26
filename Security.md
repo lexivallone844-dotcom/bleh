@@ -63,6 +63,8 @@ user: ALVA-502-M
 
 password: WmiTB04OZ2wo
 
+float ip: 
+
 # SSH Multi-plex (Master)Sockets
 
 **ssh -MS /tmp/jmp**(name wtv but directly what target its going to) **demo1@10.50.16.136  -fN**(creates the socket to connect to os and have seperate term to know where the socket was established)
