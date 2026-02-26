@@ -63,7 +63,7 @@ user: ALVA-502-M
 
 password: WmiTB04OZ2wo
 
-float ip: 
+float ip: 10.50.13.203
 
 # SSH Multi-plex (Master)Sockets
 
