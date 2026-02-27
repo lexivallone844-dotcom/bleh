@@ -90,6 +90,8 @@ syntax: **UNION SELECT column_name,column_name FROM database.table**
 
 **Audi' UNION SELECT 1,2,table_schema,table_name,column_name FROM information_schema.columns; #**
 
+(note: that table_schema is database)
+
 - (duplicate page- so you can do wtv w/o ruining the original)
 
 4. Craft Queries
