@@ -71,11 +71,11 @@ float ip: 10.50.13.203
 
 **ssh -S**(using this socket @ /tmp/jump)**/tmp/jmp a@1**(dummy filler, it automatically fills in your creds from establishing the socket) (enters into os) 
 
-**ssh -S /tmp/jmp -O forward -L 2222:(TGT):22** (ride connection into demo  1 box and forwared connection into first target)
+**ssh -S /tmp/jmp jump -O forward -L 2222:(TGT):22** (ride connection into demo  1 box and forwared connection into first target)
 
-**ssh -S /tmp/jmp -O forward -D 9050 a@1** (setting up a dynamic tunnel to machine with same user)
+**ssh -S /tmp/jmp jump  -O forward -D 9050 a@1** (setting up a dynamic tunnel to machine with same user)
 
-**ssh -S /tmp/jmp -O cancel -D 9050 a@1** (destory dynamic tunnel for socket)
+**ssh -S /tmp/jmp jump -O cancel -D 9050 a@1** (destory dynamic tunnel for socket)
 
 -O : options following ssh cmd and is setting up listening port on your machine to target @ port 22
 
