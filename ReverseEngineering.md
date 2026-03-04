@@ -81,7 +81,50 @@ Result:
 
 # DEMO
 
+## Static Analysis
+
+- (download file, go to file in cmd line, and analyze it without opening file)
+
+**strings.exe -a -nobanner (file) | findstr /i enter**
+
+**strings.exe -a -n 7 -nobanner (file) | select -first 10**
+
+- (note: -n # : of how long you want word to be)
+
+## Behavioral Analysis
+
+//Run it
+
+- (open Ghidra, create project, import file, double click on exe file, click analyze, )
+
+- (analyze the strings, up on top click **Search**, **Strings**, and then enter what you want to be filtered at the bottom)
+
+- ( when you found the string, in Ghidra it will go straight to it, double-click the function to read the script tied to function)
+
+**in the decompile for the funciton, you can right-click and convert hex -> decimal**
+
+- (note: you need to look for how the script is ran from end to beginning, can edit the var and functions in the script to make it more understandable)
+
+**local_1c = userinput**
+
+**local_8 = userinput**
+
+- (note: look for the functions that stick out)
+
+  
+## Patching
+
+- (note: main goal is to alter what the function does, which you will want to creat a success message everytime)
+
+- (Start by working backwards)
+
+- Found success message, navigate to success function, found condition that sets it in the C code, where gonna click it so it highlights in assembly.
+- 
+## How to change assembly
+
+- Right-click the register or number in the assembly > then click **patch instruction** > change number to match the register (look for something like CMP(which subtracts values and will = 0 if true) 
+- Change hex number to EAX
+- Go to FIle at top > Format PE > Change the location > save it and run it
 
 
-
-
+  (when cycling through analysis check to see when things are read. Look to see how the files change when you press enter. Values will be pulled from file or from registry)
