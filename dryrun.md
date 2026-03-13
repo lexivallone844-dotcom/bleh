@@ -451,17 +451,13 @@ Search on sudo -l commands
 **find / -name (word of interest) * 2>/dev/null**
 
 ex: words of interest:
-password
-
-creds
+- password
+- creds
+- network 
+- hosts
+- *sys*
 
 # RDP session from box3
 
 - (youll find an exe and then youll use your sysinternals, if it isnt on target, scp onto your home linux box)
 
-
-network 
-
-hosts
-
-*sys*
