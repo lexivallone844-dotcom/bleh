@@ -279,13 +279,46 @@ ex:
 
 ** sudo ./exploit_me $(python linbuf.py)**
 
-- (then it will prompt you a terminal that you opened via exe and enumerate the machine)
+- (then it will prompt you a terminal that you opened via exe with root privs and enumerate the machine)
 
-(note once you get into machine, change password and then ssh into it by making another MS)
+(note once you get into machine, change password and then ssh into it by making another MS, make it dynamic to enumerate on other ips you find)
 
 - (then start enumerating the machine)
 
-**cat /etc/hosts**
+**cat /etc/hosts** : (find an ip that you can touch so you want to ping that network)
 
-**
+**for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) 2>/dev/null ;done**
 
+- (you will be given some other addresses, and enumerate on it)
+
+- (from linops)
+
+**proxychains nmap (ip) -T4**
+
+**proxychains nmap --script banner.nse ip -T4 -p #,#**
+
+- (your given http and ssh, so make a -S forward to that ip and its ports)
+- (in this case you were given two boxes that you can connect to)
+
+**ssh -S /tmp/pivot pivot -O forward -L rhp:ip:port -L rhp:ip:port**
+
+- (after go to webite from browser and enumerate to get creds for the next box)
+(from browser)
+
+127.0.0.1:rhp
+
+- (start enumerating the website)
+
+(click around and start figuring stuff out, youll notice the webiste is a sql table)
+
+- (from here you will find the vulnerable table where it lists everything)
+
+(for this it prompts a url)
+
+**127.0.0.1:rhp/pick.php?product=1**
+
+- (for this it matches the sql syntax for URL inject, so try changing the number product= to find what is vulnerable)
+
+**127.0.0.1:rhp/pick.php?product=7** : #7 is the vulnerable that shows all tables
+
+- (now go through 
