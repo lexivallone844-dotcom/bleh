@@ -34,4 +34,34 @@ ip:port
 
 - ( you will try and find the login page and try the 'OR 1='1)
 
-(
+**right-click on login page --> inspect --> find form method="post" action="login.php"**
+
+-( your going to change **post to get** and then login, then view page source)
+
+- (note: another way would be sql login post)
+
+syntax:
+
+http://ip/login.php?**username='OR 1='1&passwd='OR 1='1**
+
+- (enumerate on the other web extensions you were given to get more information)
+
+(note: you can note that if a page has a decode section, you can enter coded sentences to get decoded)
+
+- (you can go do the page after I got past the login and try and see if it a terminal)
+(in browser)
+
+**; whoami**
+
+(note: if so you can run a .ssh keygen and try to exploit machine that way)
+
+# Moving into exploiting machine 
+
+- (ip you were given, make a MS and enter creds)
+
+**ssh -MS /tmp/pivot user@ip**
+
+
+
+
+
