@@ -433,3 +433,35 @@ Search on sudo -l commands
 - (then your into an rdp session on a windows box)
 
 (note: you just look around, and on the box under setup there was an inital_setup file with all info)
+
+# Questions pertaining to what you find
+
+- (when on user2 1st box)
+
+**How many web directories would be hosted on the webserver?**
+
+- (go to web directory, in this case /var/www, and dir, run a **ls -plisa**, will show you the directories vs files)
+
+**What is the kernel name?**
+
+- (run **uname -r**)
+
+**How to find files your needing**
+
+**find / -name (word of interest) * 2>/dev/null**
+
+ex: words of interest:
+password
+
+creds
+
+# RDP session from box3
+
+- (youll find an exe and then youll use your sysinternals, if it isnt on target, scp onto your home linux box)
+
+
+network 
+
+hosts
+
+*sys*
