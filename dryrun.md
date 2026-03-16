@@ -42,9 +42,27 @@ ip:port
 
 - (note: another way would be sql login post)
 
-syntax:
+# Sql login post 
 
-http://ip/login.php?username='OR 1='1&passwd='OR 1='1
+user: 'OR 1='1
+
+pass: 'OR 1='1
+
+- (for password on webpage)
+
+you can right-click inspect and remove password from type="password" to see password you enter
+
+- (now you can login)
+
+GO to inspect > Network > Post > Request > Raw will give (radio button)
+
+(note: check **Headers** to see if you have to change the .php to access the creds) 
+
+- (at the end of URL, type '? and content from raw button')
+x.x.x.x/login.php?(content from raw button)
+
+- (Success w/ bypass, now your given creds)
+right-click - view page source ( to see better)
 
 - (enumerate on the other web extensions you were given to get more information)
 
