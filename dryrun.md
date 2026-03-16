@@ -111,15 +111,11 @@ ex: **./exploit_me $(whoami)**
 
 - (on the pivot box you enter **bash** to get better term, and you can then make linbuf script on there)
 
-gdb ./(file)
-
-(maintain gdb session)
-
-shell and can type exit and go back to it
+gdb ./(exeyoufound)
 
 (want to investigate function)
 
-file ; (to see if file is uploaded)
+file : (to see if file is uploaded)
 
 file ./(file ; (to upload file)
 
