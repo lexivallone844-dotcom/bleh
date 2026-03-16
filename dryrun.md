@@ -42,7 +42,7 @@ ip:port
 
 syntax:
 
-http://ip/login.php?**username='OR 1='1&passwd='OR 1='1**
+http://ip/login.php?username='OR 1='1&passwd='OR 1='1
 
 - (enumerate on the other web extensions you were given to get more information)
 
