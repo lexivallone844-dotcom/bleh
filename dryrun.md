@@ -125,7 +125,7 @@ info functions ; (to view functions)
 
 Disassembly
 
-run disass_main or pdisass main
+run disass main or pdisass main
 
 (note: what we will be paying attention to is the call to user input, not x86, ect.)
 
