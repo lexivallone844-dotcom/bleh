@@ -32,11 +32,13 @@ ip:port
 
 **Ex: http://ip/getcareers.php?myfile=../../../../../etc/hosts**
 
-- ( you will try and find the login page and try the 'OR 1='1)
+- (find the login page and will put in the 'OR 1='1)
+
+(then you will)
 
 **right-click on login page --> inspect --> find form method="post" action="login.php"**
 
--( your going to change **post to get** and then login, then view page source)
+-( then your going to change **post to get** and then login, then view page source)
 
 - (note: another way would be sql login post)
 
