@@ -133,11 +133,14 @@ run disass main or pdisass main
 
 (to go more into the function)
 
-pdisass getuserinput
+disass getuserinput
 
 (if you were asked what was the vulnerable function in the file and your answer would be one of the red functions, just the name, not the symbol)
 
-Dynamic Analysis Pt II
+(note: if on the pivot box it doesn't show color for the function just have scp the exe to your linops to see it)
+
+
+# Dynamic Analysis Pt II
 
 Fuzzing ; (were going to throw things at the program to see when it breaks)
 
