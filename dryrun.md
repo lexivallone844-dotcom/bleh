@@ -109,7 +109,7 @@ ex: **./exploit_me $(whoami)**
 
 - ( you know that it is a script that is a potential exploit on a machine so you will do exploit development on script)
 
-- (go to linops to make linbuf script)
+- (on the pivot box you enter **bash** to get better term, and you can then make linbuf script on there)
 
 gdb ./(file)
 
@@ -117,7 +117,7 @@ gdb ./(file)
 
 shell and can type exit and go back to it
 
-(want to investigate funcitons)
+(want to investigate function)
 
 file ; (to see if file is uploaded)
 
